@@ -3,14 +3,19 @@
     padding: 0;
 }
 
+body{
+    background-color: #FFCE1F;
+    color: #555B6E;
+}
+
 .content{
     height: 100vh;
 }
-div{
-    border-style: solid;
-    border-color: black;;
-}
+
 .score{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100px;
 }
@@ -28,11 +33,18 @@ div{
 }
 
 .big-picture{
-    width: 33%;
+    max-height: 95%;
     margin: 10px 5%;
 }
 
+.big-picture img{
+    height: calc(100% - 40px);
+}
+
 .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 40px;
 }
 
@@ -41,6 +53,9 @@ div{
 }
 
 .gamelog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 50px;
 }
 
@@ -57,14 +72,35 @@ div{
     margin: 25px;
 }
 
+.button button{
+    cursor: pointer;
+    border: none;
+    background:#FFE070;
+    height: 100%;
+    width: 100%;
+    border: solid 1px;
+    border-radius: 5%;
+    padding: 10px;
+}
+
+.button img{
+    max-height: 100%;
+}
+
 .start-game-text{
     height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
 .game-start .button{
     height: 30px;
     width: 180px;
-    margin: auto;
+    margin: auto
 }
 
+.game-start button{
+    background-color: #86CD82;
+}
