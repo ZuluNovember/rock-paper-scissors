@@ -1,41 +1,89 @@
-let computerMoves = ["rock","paper","scissors"];
+const startButton = document.querySelector("#start-game");
+startButton.addEventListener('click', game);
 
-function computerPlay(){
-    
-    return computerMoves[Math.floor(Math.random()*3)];
+let playerScore = 0;
+let computerScore= 0;
+
+function game(){
+
+    initiateGame();               
 }
 
-function playRound(playerSelection, computerSelection){
+function initiateGame(){
 
-    let lowerCasePlayerSelection = playerSelection.toLowerCase();
-    let lowerCaseComputerSelection = computerSelection.toLowerCase();
+    document.querySelector(".gamelog").textContent = "Choose one";
+    score.style = 'letter-spacing:20px;';
+    score.textContent = `${playerScore} - ${computerScore}`;
+    startButton.textContent = "Restart Game";
+
+    const buttons = document.querySelectorAll('.game-button');
+    buttons.forEach(x => x.addEventListener('click', e => playRound(e)))
+
+}
+
+
+function computerPlay(){
+
+    let computerMoves = ["rock","paper","scissors"];  
+        return computerMoves[Math.floor(Math.random()*3)];
+
+}
+
+
+function playRound(x){
+
+    let buttonContainers = document.querySelectorAll('.button');
+    buttonContainers.forEach(x => x.classList.remove('playerSelected'));
     
-    switch (lowerCasePlayerSelection){
+    let computerSelection = computerPlay();
+    let computerSelectedElement =document.querySelector(`#${computerSelection}`);
+    computerSelectedElement.parentElement.classList.add('computerSelected')
 
+    let playerSelection = x.target.id;
+    let selectedElement = document.querySelector(`#${playerSelection}`);
+    selectedElement.parentElement.classList.add('playerSelected');
+
+    imageChanger(playerSelection, computerSelection);
+
+    let result = declareResult(computerSelection, playerSelection);
+    
+    if(result == 'win'){
+        playerScore+=1;
+        score.textContent = `${playerScore} - ${computerScore}`;
+
+    }
+        
+
+}
+
+function declareResult(computerSelection,playerSelection){
+
+    switch (playerSelection){
+        
         case "rock":
-            if (lowerCaseComputerSelection === "rock"){
+            if (computerSelection === "rock"){
                 return "tie";
-            }else if(lowerCaseComputerSelection === "paper"){
+            }else if(computerSelection === "paper"){
                 return "lose";
             }else{
                 return "win";
             }
             break;
-        
+            
         case "paper":
-            if (lowerCaseComputerSelection === "paper"){
+            if (computerSelection === "paper"){
                 return "tie";
-            }else if(lowerCaseComputerSelection === "scissors"){
+            }else if(computerSelection === "scissors"){
                 return "lose";
             }else{
                 return "win";
             }
             break;
-        
+            
         case "scissors":
-            if (lowerCaseComputerSelection === "scissors"){
+            if (computerSelection === "scissors"){
                 return "tie";
-            }else if(lowerCaseComputerSelection === "rock"){
+            }else if(computerSelection === "rock"){
                 return "lose";
             }else{
                 return "win";
@@ -44,33 +92,10 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+function imageChanger(playerChoice, computerChoice){
+    let playerImage = document.getElementById('player-choice');
+    let computerImage = document.getElementById('computer-choice');
+    playerImage.src = `images/${playerChoice}.svg`;
+    computerImage.src = `images/${computerChoice}.svg`;
 
-function game(){
-
-    let playerScore = 0;
-    let computerScore = 0;
-    
-    for(let i = 0; i<5; i++){
-        const playerSelection = prompt("Rock,paper,scissors...") ;
-        const computerSelection = computerPlay();
-
-        let result = playRound(playerSelection, computerSelection);
-
-        if(result ==="win"){
-            playerScore++;
-            console.log(`Computer's choice is ${computerSelection}. Congratz! Player:${playerScore} Computer:${computerScore}`)
-
-        }else if(result === "lose"){
-            computerScore++;
-            console.log(`Computer's choice is ${computerSelection}. Computer won this round. Player:${playerScore} Computer:${computerScore}`)
-
-        }else if(result == undefined){
-            console.log("Wrong input try again!")
-            
-        }else{
-            console.log(`Computer's choice is ${computerSelection}. It's a tie! Try again.`)
-        }
-    }
-
-    console.log(`Result is Player:${playerScore} Computer:${computerScore} Winner is ${playerScore > computerScore? "Player": computerScore > playerScore ? "Computer":"No winner. It's a tie!"}`)
 }

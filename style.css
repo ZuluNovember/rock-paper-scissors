@@ -5,7 +5,11 @@
 
 body{
     background-color: #FFCE1F;
-    color: #555B6E;
+    color: #3E4251;
+}
+
+button:hover{
+    transform: scale(1.03);
 }
 
 .content{
@@ -48,10 +52,6 @@ body{
     height: 40px;
 }
 
-.controls{
-    height: 100%;
-}
-
 .gamelog{
     display: flex;
     justify-content: center;
@@ -67,8 +67,8 @@ body{
 }
 
 .button{
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    height: 100px;
     margin: 25px;
 }
 
@@ -78,13 +78,28 @@ body{
     background:#FFE070;
     height: 100%;
     width: 100%;
-    border: solid 1px;
-    border-radius: 5%;
-    padding: 10px;
+    border-radius: 20px;
 }
 
-.button img{
-    max-height: 100%;
+#rock{
+    background-image: url(images/rock.svg);
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#paper{
+    background-image: url(images/paper.svg);
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#scissors{
+    background-image: url(images/scissors.svg);
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .start-game-text{
@@ -104,3 +119,11 @@ body{
 .game-start button{
     background-color: #86CD82;
 }
+
+.playerSelected{
+    border: 3px solid blue;
+    border-radius:20px;
+    transition: 100ms;
+    transform: scale(1.1);
+}
+

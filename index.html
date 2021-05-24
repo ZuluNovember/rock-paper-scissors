@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="scripts/script.js"></script>
 </head>
 <body>
     <div class="main">
         <div class="content">
             <div class="score">
-                <h1>Rock Paper Scissors</h1>
+                <h1 id="score">Rock Paper Scissors</h1>
             </div>
             <div class="game">
                 <div class="choice">
@@ -20,13 +19,13 @@
                         <div class="title">
                             <H2>PLAYER</H2>
                         </div>
-                        <img src="images/user-svgrepo-com.svg" alt="">
+                        <img id="player-choice" src="images/user-svgrepo-com.svg" alt="">
                     </div>
                     <div class="big-picture">
                         <div class="title">
                             <h2>COMPUTER</h2>
                         </div>
-                        <img src="images/computer.svg" alt="">
+                        <img id="computer-choice" src="images/computer.svg" alt="">
                     </div>
                 </div>
                 <div class="controls">
@@ -35,13 +34,13 @@
                     </div>
                     <div class="button-container">
                         <div class="button">
-                            <button><img src="images/rock.png" alt=""></button>
+                            <button class="game-button" id="rock"></button>
                         </div>
                         <div class="button">
-                            <button><img src="images/paper.svg" alt=""></button>
+                            <button class="game-button" id="paper"></button>
                         </div>
                         <div class="button">
-                            <button><img src="images/scissors-svgrepo-com.svg" alt=""></button>
+                            <button class="game-button" id="scissors"></button>
                         </div>
 
                     </div>
@@ -50,12 +49,14 @@
                             <p>Classical rock paper scissors game agains the computer. First one to reach 5 wins game.</p>
                         </div>
                         <div class="button">
-                            <button>Start Game</button>
+                            <button id="start-game">Start Game</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="scripts/script.js"></script>
 </body>
 </html>
