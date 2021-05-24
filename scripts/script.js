@@ -1,23 +1,29 @@
 const startButton = document.querySelector("#start-game");
 startButton.addEventListener('click', game);
 
-let playerScore = 0;
-let computerScore= 0;
+let playerScore;
+let computerScore;
+
 
 function game(){
 
-    initiateGame();               
+    initiateGame();
+    
+    const buttons = document.querySelectorAll('.game-button');
+    buttons.forEach(x => x.addEventListener('click', playRound))
+
 }
 
+
 function initiateGame(){
+
+    playerScore = 0;
+    computerScore = 0;
 
     document.querySelector(".gamelog").textContent = "Choose one";
     score.style = 'letter-spacing:20px;';
     score.textContent = `${playerScore} - ${computerScore}`;
     startButton.textContent = "Restart Game";
-
-    const buttons = document.querySelectorAll('.game-button');
-    buttons.forEach(x => x.addEventListener('click', e => playRound(e)))
 
 }
 
@@ -25,7 +31,7 @@ function initiateGame(){
 function computerPlay(){
 
     let computerMoves = ["rock","paper","scissors"];  
-        return computerMoves[Math.floor(Math.random()*3)];
+    return computerMoves[Math.floor(Math.random()*3)];
 
 }
 
@@ -50,11 +56,22 @@ function playRound(x){
     if(result == 'win'){
         playerScore+=1;
         score.textContent = `${playerScore} - ${computerScore}`;
+        document.querySelector(".gamelog").textContent = "You won the round!";
+    
+    }else if(result == 'lose'){
+        computerScore+=1;
+        score.textContent = `${playerScore} - ${computerScore}`;
+        document.querySelector(".gamelog").textContent = "Computer won the round!";
+        
+    }else if(result=='tie'){
+        document.querySelector(".gamelog").textContent = "It's a tie.";
 
     }
-        
 
-}
+    announceWinner();
+    
+    }
+        
 
 function declareResult(computerSelection,playerSelection){
 
@@ -93,9 +110,24 @@ function declareResult(computerSelection,playerSelection){
 }
 
 function imageChanger(playerChoice, computerChoice){
+
     let playerImage = document.getElementById('player-choice');
     let computerImage = document.getElementById('computer-choice');
     playerImage.src = `images/${playerChoice}.svg`;
     computerImage.src = `images/${computerChoice}.svg`;
 
+}
+
+function announceWinner(){
+    
+    if(playerScore===5){
+        document.querySelectorAll('.game-button').forEach(x => x.removeEventListener('click',playRound));
+        document.querySelector(".gamelog").textContent = "Congratulations. You won the game. Click 'Restart Game' button to play again.";
+    }
+
+    if(computerScore===5){
+        document.querySelectorAll('.game-button').forEach(x => x.removeEventListener('click',playRound));
+        document.querySelector(".gamelog").textContent = "Game over. Computer won the game. Click 'Restart Game' button to play again.";
+
+    }
 }
